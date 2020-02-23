@@ -1,0 +1,33 @@
+<! DOCTYPE html>
+<html lang=”en”>
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Add lot</title>
+<link rel="stylesheet" type="text/css" href="../static/file.css">
+<!--<script src="./node_modules/web3/dist/web3.min.js"></script>-->
+<!--<link href='./bootstrap.min.css' rel='stylesheet' type='text/css'>-->
+<link href="./css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<form action = "http://localhost:5000/result" method = "POST">
+<div class="myform" class="container">
+    <h1>Predict custom input </h1>
+    <!--<div id="bal">Balance: </div>-->
+    <div class="row"><label>Current Runs</label><input name="runs"  type="number" placeholder="Current Runs"></div>
+    <div class="row"><label>Wickets</label><input name="wickets"  type="number" placeholder="Wickets"></div>
+    <div class="row"><label>Overs</label><input name="overs" type="number" placeholder="Overs"></div>
+    <div class="row"><label>Strikers runs</label><input name="sruns"  type="number" placeholder="Striker"></div>
+    <div class="row"><label>Non-trikers runs</label><input name="nruns"  type="number" placeholder="Nonstriker"></div>
+    <input type="submit" class="btn btn-primary" value="Predict">
+</div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+
+</body>
+</html>

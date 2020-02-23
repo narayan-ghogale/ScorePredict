@@ -1,0 +1,155 @@
+<! DOCTYPE html>
+<html lang=”en”>
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Farmer:dashboard</title>
+<link rel="stylesheet" type="text/css" href="../static/file.css">
+<!-- <script src="https://www.jsdelivr.com/package/npm/chart.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+  
+ <div class="container">
+<h3><div>Dashboard</div></h3>
+<!-- <span id="sysStatus" style="font-weight: bold;">{{ status }}</span> -->
+
+<div class="row">
+		<div class="card bg-light mb-4 lg-4" style="min-width:300px;min-height:20rem;margin-left:20px">
+  <div class="card-header  bg-secondary" style="color:white" id="head">Live Score</div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <div class="card-text" id="scorearea">
+    </div>
+  </div>
+</div>
+
+		<div class="card bg-light mb-4 lg-4" style="min-width:300px;min-height:20rem;margin-left:20px">
+  <div class="card-header  bg-secondary" style="color:white">Predicted Score</div>
+  <div class="card-body">
+    <h1 class="card-title" id="predicted"></h1>
+  </div>
+</div>
+
+<div class="card bg-light mb-4 lg-4" style="min-width:300px;min-height:20rem;margin-left:20px">
+  <div class="card-header  bg-secondary" style="color:white">Winning Percentage</div>
+  <div class="card-body">
+  <div id="chartContainer" style="height: 300px; width: 300px;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  </div>
+</div>
+</div>
+<br>
+<div class="card bg-light " style="width:100%;margin-left:10px">
+  <div class="card-header  bg-secondary" style="color: white;">Time Line of prediction score</div>
+  <div class="card-body">
+    
+      <div id="chartContainer2" style="height: 300px; width: 100%;margin-bottom: 20px;"></div>
+  </div>
+</div>
+
+    <!--<div class="col-lg-2"style="min-width: 400px">
+        <div class="box" onclick="App.myLots(); return false;">
+                       	<img src="images/list.svg" width="140px" height="140px"></img>
+ View History</div>
+    </div>-->
+</div>
+
+</div>
+<script>
+  var abc="hello"
+  r='{{result}}'
+  var scorecard = JSON.parse('{{ scorecard | tojson | safe}}');
+  var l=document.getElementById("scorearea");
+  let tr="<div>"+"<label>"+"Team Batting :" + scorecard.batting.team+"</label>"+"</br>"
+       + "<label>"+"Runs : "+ scorecard.batting.score[0].runs+"</label>"+"<br>"
+       +"<label>" +"Wickets : "+ scorecard.batting.score[0].wickets+"</label>"+"<br>"
+       +"<label>" +"Overs : "+scorecard.batting.score[0].overs+"</label>"+"<br>"
+        +"<label>" +scorecard.batting.batsman[0].name+" : "+scorecard.batting.batsman[0].runs+"</label>"+"<br>"
+        +"<label>" +scorecard.batting.batsman[1].name+" : "+scorecard.batting.batsman[1].runs+"</label>"+"<br>"
+       +"</div>"
+  l.innerHTML=tr;
+  let trhead="<label>"+r+"</label>"
+  document.getElementById('predicted').innerHTML=trhead;
+</script>
+
+<script>
+  window.onload = function () {
+  losing=100-'{{percent}}'
+  console.log("here");
+  var chart = new CanvasJS.Chart("chartContainer", {
+  animationEnabled: true,
+  title:{
+  text: "Toss Prediction",
+  horizontalAlign: "left"
+  },
+  data: [{
+  type: "doughnut",
+  startAngle: 60,
+  //innerRadius: 60,
+  indexLabelFontSize: 17,
+  indexLabel: "{label} -  {y}%",
+  toolTipContent: "<b>{label}:</b> {y}% ",
+  dataPoints: [
+  { y: '{{percent}}', label: "Toss & Win" },
+  { y: 100-'{{percent}}', label: "Toss & Loss" }
+  
+  ]
+  }]
+  });
+  chart.render();
+
+  
+  var chart2 = new CanvasJS.Chart("chartContainer2", {
+  animationEnabled: true,
+  theme: "light2",
+  title:{
+  text: "Score Chart"
+  },
+  axisY:{
+  includeZero: false,
+  title:"Predicted score"
+  },
+  axisX:{
+    title:"Over"
+  },
+  data: [{        
+  type: "line",      
+  dataPoints: [
+  { y: 350 },
+  { y: 342},
+  { y: 362, indexLabel: "highest",markerColor: "red", markerType: "triangle" },
+  { y: 299 },
+  { y: 283 },
+  { y: 301 },
+  { y: 302 },
+  { y: 301 },
+  { y: 281 , indexLabel: "lowest",markerColor: "DarkSlateGrey", markerType: "cross" },
+  { y: 287 },
+  { y: 290 },
+  { y: 300 }
+  ]
+  }]
+  });
+  chart2.render();
+  
+
+  }
+  </script>
+
+  <!-- <script>
+    $(document).ready(function() {
+        setInterval("ajaxd()",10000); // call every 10 sec
+    });
+    
+    function ajaxd() { 
+      //reload result into element with id "sysStatus"
+      $("#sysStatus").load("/dashboard", function() {  alert( "Load was performed." ); });
+    }
+  </script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</body>
+</html>
