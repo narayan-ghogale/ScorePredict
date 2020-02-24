@@ -11,4 +11,16 @@ Challenges we ran into
 Finding the datasets,Training the model,integrating all the things together and using blockchain technology for betting .  
   
 Technology used:  
-HTML, Bootstrap, CSS, JavaScript, Flask, scikit-learn, Python, Remix IDE, Blockchain(Ethereum), Solodity
+HTML, Bootstrap, CSS, JavaScript, Flask, scikit-learn, Python, Remix IDE, Blockchain(Ethereum), Solodity  
+  
+Screenshots:  
+![](env/screenshots/index.PNG)  
+  
+![](env/screenshots/dashboard1.PNG)    
+  
+![](env/screenshots/dashboard2.PNG)  
+  
+![](env/screenshots/custominput.PNG)  
+  
+![](env/screenshots/customoutput.PNG)  
+
