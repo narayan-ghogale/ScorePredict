@@ -1,6 +1,7 @@
 # ScorePredict
 Project made in DJACM-LOC 2020  
-Cricket Analytics and Betting  
+Cricket Analytics and Betting  <br></br>
+Devfolio link: https://devfolio.co/submissions/cricket-analytics-and-betting  <br></br>
 Cricket Analytics helps to predict the target score by not only viewing the run rate but also checking various other factors like wickets left,runs scored,overs left and players playing on field    
 
 
